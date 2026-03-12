@@ -1,3 +1,61 @@
 spring:
   application:
     name: pensees-concordance
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  output:
+    ansi:
+      enabled: ${ANSI_ENABLED:always}
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/pensees_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:create}
+    show-sql: ${JPA_SHOW_SQL:true}
+    properties:
+      hibernate:
+        format_sql: ${JPA_FORMAT_SQL:true}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+  devtools:
+    restart:
+      enabled: ${DEVTOOLS_RESTART:true}
+    livereload:
+      enabled: ${DEVTOOLS_LIVERELOAD:true}
+
+management:
+  endpoints:
+    web:
+      base-path: ${ACTUATOR_BASE_PATH:/actuator}
+      exposure:
+        include: ${ACTUATOR_ENDPOINTS:*}
+  endpoint:
+    health:
+      show-details: ${ACTUATOR_HEALTH_DETAILS:always}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-stacktrace: ${ERROR_STACKTRACE:always}
+    include-message: ${ERROR_MESSAGE:always}
+
+logging:
+  file:
+    name: ${LOG_FILE:}
+  pattern:
+    console: ${CONSOLE_LOG_PATTERN:%clr(%d{HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}
+    file: ${LOG_PATTERN:%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n}
