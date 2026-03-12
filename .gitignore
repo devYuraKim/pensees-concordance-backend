@@ -23,13 +23,10 @@ bin/
 *.iml
 **/*.iml
 *.ipr
-.idea/**/*.xml
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 *.local
-.idea/shelf/
-
 
 ### NetBeans ###
 /nbproject/private/
@@ -47,3 +44,10 @@ out/
 # env
 .env
 .env.prod
+
+# Docker
+.docker/
+
+# Log files
+*.log
+
