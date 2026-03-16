@@ -9,6 +9,16 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
+@Table(
+        uniqueConstraints = @UniqueConstraint(
+                columnNames = {
+                        "edition",
+                        "refNumber",
+                        "refSuffix",
+                        "sellier_fragment_id"
+                }
+        )
+)
 public class EditionReference {
 
     @Id
