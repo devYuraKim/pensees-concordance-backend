@@ -31,6 +31,7 @@ public class EditionReference {
     private String refSuffix; // "bis", "ter", null
     private String refRaw; // only populated for exceptions "828-829", "194 bis, ter", null
 
+    @Setter(AccessLevel.PACKAGE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sellier_fragment_id")
     private SellierFragment sellierFragment;
